@@ -1,0 +1,15 @@
+spring:
+  application:
+    # 服务名称
+    name: blog-user
+  cloud:
+    nacos:
+      server-addr: 192.168.100.130:8848
+      config:
+        server-addr: 192.168.100.130:8848
+        file-extension: yaml
+        namespace: bb8c61ad-dfed-47d6-a37d-fe5af5d69b6d
+        refresh-enabled: true
+    # SpringCloud 2021版本之后，需要用以下方式导入nacos的配置文件
+  config:
+    import: nacos:${spring.application.name}

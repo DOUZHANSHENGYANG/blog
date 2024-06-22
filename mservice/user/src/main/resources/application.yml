@@ -10,6 +10,70 @@ spring:
         file-extension: yaml
         namespace: bb8c61ad-dfed-47d6-a37d-fe5af5d69b6d
         refresh-enabled: true
-    # SpringCloud 2021版本之后，需要用以下方式导入nacos的配置文件
+
+    # 配置中心
   config:
+    # SpringCloud 2021版本之后，需要用以下方式导入nacos的配置文件
     import: nacos:${spring.application.name}
+
+  devtools:
+    restart:
+      # 开启热部署（更改文件后，自动重启）
+      enabled: true
+
+    # 数据源配置
+  datasource:
+    url: jdbc:mysql://192.168.100.130:3306/blog?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 10
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        allow: true
+      web-stat-filter:
+        enabled: true
+        url-pattern: /druid/*
+      filters:
+        -stat
+        -wall
+        -slf4j
+      connection-properties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+
+# --- mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: xyz.douzhan.blog.service.domain.entity
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      # 主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: auto
+#      logic-delete-field: deleted # 全局逻辑删除字段名
+#      logic-delete-value: 1 # 逻辑已删除值
+#      logic-not-delete-value: 0 # 逻辑未删除值
+  configuration:
+    # 是否开启自动驼峰命名规则映射
+    map-underscore-to-camel-case: true
+    # 返回类型为Map,显示null对应的字段
+    call-setters-on-nulls: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+

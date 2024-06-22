@@ -6,7 +6,7 @@
     <parent>
         <groupId>xyz.douzhan</groupId>
         <artifactId>mservice</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>user</artifactId>
@@ -31,6 +31,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>xyz.douzhan.blog.service.UserApplication</mainClass>
+                    <executable>true</executable>
+                    <skip>false</skip>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -53,8 +58,8 @@
                 <includes>
                     <include>**/*.*</include>
                 </includes>
-                <filtering>true</filtering>
             </resource>
         </resources>
     </build>
+
 </project>

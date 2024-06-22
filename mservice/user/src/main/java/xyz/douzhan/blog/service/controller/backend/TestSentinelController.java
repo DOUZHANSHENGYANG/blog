@@ -1,4 +1,4 @@
-package xyz.blog.controller;
+package xyz.douzhan.blog.service.controller.backend;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;

@@ -1,5 +1,6 @@
-package xyz.blog;
+package xyz.douzhan.blog.service;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -13,7 +14,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @since JDK 17
  */
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"xyz.douzhan.blog"})
+@MapperScan("xyz.douzhan.blog.service.mapper")
 public class UserApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserApplication.class,args);
